@@ -45,10 +45,11 @@ void MainWindow::on_pushButton_init_clicked()
     qDebug() << "error" << m_db.lastError().text();
     if(m_db.lastError().isValid())
         QMessageBox::critical(this, tr("Critical"),tr(qPrintable(m_db.lastError().text())),QMessageBox::Ok);
-    QMessageBox::warning(this, tr("Warnig"),("Driver loaded!"),QMessageBox::Ok);
-    ui->pushButton_init->setEnabled(false);
-    ui->pushButton_psql->setEnabled(true);
-
+    else {
+        QMessageBox::warning(this, tr("Warnig"),("Driver loaded!"),QMessageBox::Ok);
+        ui->pushButton_init->setEnabled(false);
+        ui->pushButton_psql->setEnabled(true);
+    }
 }
 
 void MainWindow::on_pushButton_esci_clicked()
