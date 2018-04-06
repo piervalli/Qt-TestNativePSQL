@@ -14,4 +14,4 @@ Libs for 32bit Mingw Compiler:
 - ssleay32.dll
 - zlib1.dll
 ###
-Tested with Qt 5.9.3 Mingw Compiler 32bit and Postgres 10.0
+Tested with Qt 5.9.3 Mingw Compiler 32bit and Postgres 10.0. After build the project  we can simply to put dlls in the folder release/debug.
