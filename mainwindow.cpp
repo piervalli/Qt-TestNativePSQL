@@ -42,9 +42,13 @@ void MainWindow::on_pushButton_init_clicked()
     m_db.setDatabaseName("postgres");
     m_db.setUserName("postgres");
     m_db.setPassword("postgres");
-    qDebug() << "error" << m_db.lastError().text();
-    if(m_db.lastError().isValid())
-        QMessageBox::critical(this, tr("Critical"),tr(qPrintable(m_db.lastError().text())),QMessageBox::Ok);
+    QStringList list = QSqlDatabase::drivers();
+    if(!list.contains("QPSQL")) {
+       QMessageBox::critical(this, tr("Critical"),"Driver QPSQL not available",QMessageBox::Ok);
+    }else if(m_db.lastError().isValid()) {
+        QMessageBox::critical(this, tr("Critical"),m_db.lastError().text(),QMessageBox::Ok);
+        qDebug() << QSqlDatabase::drivers().join(" ");
+    }
     else {
         QMessageBox::warning(this, tr("Warnig"),("Driver loaded!"),QMessageBox::Ok);
         ui->pushButton_init->setEnabled(false);
